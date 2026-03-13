@@ -1,6 +1,13 @@
 CXX=		g++
 CC=			gcc
-CXXFLAGS=	-g -O3 -msse4.2 -mpopcnt -fomit-frame-pointer -Wall
+UNAME_M := $(shell uname -m)
+CXXFLAGS=	-g -O3 -fomit-frame-pointer -Wall
+ifneq (,$(filter x86_64 amd64,$(UNAME_M)))
+    CXXFLAGS += -msse4.2 -mpopcnt
+endif
+ifneq (,$(filter aarch64 arm64,$(UNAME_M)))
+    CXXFLAGS += -march=armv8-a+simd
+endif
 CFLAGS=		$(CXXFLAGS)
 CPPFLAGS=
 INCLUDES=

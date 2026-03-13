@@ -3,10 +3,14 @@
 
 #define __STDC_LIMIT_MACROS
 #include <stdint.h>
+#if defined(__aarch64__) || defined(_M_ARM64)
+#include "sse2neon.h"
+#else
 #include "emmintrin.h"
 #include "nmmintrin.h"
 #include "smmintrin.h"
 #include <immintrin.h>
+#endif
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
