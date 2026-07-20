@@ -2,6 +2,11 @@
 #include <assert.h>
 #include "ksw2.h"
 
+
+#if defined(__aarch64__) || defined(_M_ARM64)
+#include "sse2neon.h"
+#endif
+
 #ifdef __SSE2__
 #include <emmintrin.h>
 
